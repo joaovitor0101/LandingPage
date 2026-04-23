@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
+import Projects from './components/Projects';
 import TechStack from './components/TechStack';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <main>
         <Hero />
         <Services />
+        <Projects />
         <TechStack />
       </main>
       
@@ -20,7 +22,7 @@ function App() {
             /dev<span className="text-brand-blue">.</span>
           </span>
           <p className="text-white/20 text-sm">
-            © {new Date().getFullYear()} Bruno Dev. Todos os direitos reservados.
+            © {new Date().getFullYear()} João Dev. Todos os direitos reservados.
           </p>
         </div>
       </footer>
