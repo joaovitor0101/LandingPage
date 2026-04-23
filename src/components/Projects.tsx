@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ExternalLink, Globe } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 // Importando as screenshots
 import tempStrategyImg from '../assets/projects/tempstrategy.png';
@@ -91,7 +91,7 @@ const Projects = () => {
               const isLeft = offset === -1 || (activeIndex === 0 && index === projects.length - 1);
               const isRight = offset === 1 || (activeIndex === projects.length - 1 && index === 0);
 
-              let x = 0;
+              let x: string | number = 0;
               let scale = 0.6;
               let rotateY = 0;
               let zIndex = 0;
