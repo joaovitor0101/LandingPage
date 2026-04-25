@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Layers, Cpu, Monitor, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import Navbar from './Navbar';
 
 const services = [
   {
@@ -76,15 +77,17 @@ const Services = () => {
   };
 
   return (
-    <section id="servicos" className="py-32 px-6 bg-[#F8F9FA] text-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
-          {/* Text Section */}
-          <motion.div 
+    <section id="servicos" className="bg-[#F8F9FA] text-black relative flex flex-col min-h-screen">
+      <Navbar theme="light" animateOnScroll={true} />
+      <div className="py-24 px-6 lg:px-12 w-full flex-1 flex items-center">
+        <div className="max-w-[1600px] mx-auto w-full">
+          <div className="flex flex-col xl:flex-row gap-12 items-start">
+            {/* Text Section */}
+            <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:w-1/3 lg:sticky lg:top-32"
+            className="xl:w-1/4 xl:sticky xl:top-32"
           >
             <span className="text-brand-blue text-xs font-bold uppercase tracking-widest mb-4 block">
               DESENVOLVEDOR WEB
@@ -110,33 +113,9 @@ const Services = () => {
             </div>
           </motion.div>
 
-          {/* Slider Section */}
-          <div className="lg:w-2/3 relative w-full">
-            {/* Navigation Arrows */}
-            <div className="absolute -top-16 right-0 flex gap-2 z-10">
-              <button 
-                onClick={() => scroll('left')}
-                disabled={!canScrollLeft}
-                className={`p-3 rounded-full border border-gray-200 transition-all ${canScrollLeft ? 'bg-white hover:bg-gray-50 text-black cursor-pointer' : 'bg-gray-50 text-gray-300 cursor-not-allowed'}`}
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button 
-                onClick={() => scroll('right')}
-                disabled={!canScrollRight}
-                className={`p-3 rounded-full border border-gray-200 transition-all ${canScrollRight ? 'bg-white hover:bg-gray-50 text-black cursor-pointer' : 'bg-gray-50 text-gray-300 cursor-not-allowed'}`}
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-
-            {/* Scroll Container */}
-            <div 
-              ref={scrollRef}
-              onScroll={checkScroll}
-              className="flex gap-6 overflow-x-auto pb-10 pt-4 px-2 no-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
+          {/* Services Grid Section */}
+          <div className="xl:w-3/4 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {services.map((service, i) => (
                 <motion.div
                   key={i}
@@ -144,7 +123,7 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className={`flex-none w-[280px] md:w-[320px] h-[480px] md:h-[580px] p-10 rounded-[40px] border snap-start flex flex-col justify-between transition-all hover:shadow-2xl hover:-translate-y-2 ${
+                  className={`w-full min-h-[400px] p-10 rounded-[40px] border flex flex-col justify-between transition-all hover:shadow-2xl hover:-translate-y-2 ${
                     service.dark 
                       ? 'bg-zinc-950 border-white/10 text-white' 
                       : 'bg-white border-gray-100 text-black shadow-sm'
@@ -160,35 +139,17 @@ const Services = () => {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 font-bold cursor-pointer group/link mt-auto">
+                  <div className="flex items-center gap-2 font-bold cursor-pointer group/link mt-auto pt-8">
                     <span className="text-base">ver mais</span>
                     <ArrowRight className={`w-5 h-5 group-hover/link:translate-x-1 transition-transform ${service.dark ? 'text-white' : 'text-black'}`} />
                   </div>
                 </motion.div>
               ))}
             </div>
-
-            {/* Pagination Indicators */}
-            <div className="flex justify-start gap-2 mt-4 ml-4">
-              {services.map((_, i) => (
-                <div 
-                  key={i} 
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i === 0 ? 'bg-brand-blue w-8' : 'bg-gray-200 w-1.5'
-                  }`} 
-                />
-              ))}
-            </div>
           </div>
         </div>
       </div>
-      
-      {/* CSS for hiding scrollbar */}
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+    </div>
     </section>
   );
 };
